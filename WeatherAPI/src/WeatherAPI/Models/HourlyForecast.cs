@@ -22,7 +22,7 @@ namespace WeatherAPI.Models
 
         public DateTime Date { get; set; }
         
-        public int WeatherCode { get; set; }
+        public int? WeatherCode { get; set; }
 
         public string WeatherDescription { get; set; }
     }

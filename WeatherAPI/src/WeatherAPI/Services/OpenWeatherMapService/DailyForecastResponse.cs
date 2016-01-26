@@ -113,11 +113,11 @@ namespace WeatherAPI.Services.OpenWeatherMapService
                 hourlyForecast.Humidity = main.humidity;
                 hourlyForecast.Pressure = main.pressure;
                 hourlyForecast.Temperature = Math.Round(main.temp);
-                hourlyForecast.WeatherCode = weather[0].id;
+                hourlyForecast.WeatherCode = weather?[0]?.id;
                 hourlyForecast.WeatherDescription = String.Concat(
-                    weather[0].main,
+                    weather?[0]?.main,
                     Environment.NewLine,
-                    weather[0].description);
+                    weather?[0]?.description);
                 hourlyForecast.Wind = wind;
                 return hourlyForecast;
             }
