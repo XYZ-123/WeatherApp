@@ -7,11 +7,14 @@ namespace WeatherAPI.Models
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Newtonsoft.Json.Serialization;
+    using Newtonsoft.Json;
     public class Wind
     {
-        [Display(Name="speed")]
+        [JsonProperty(PropertyName = "speed")]
         public double Speed { get; set; }
-        [Display(Name = "deg")]
+
+        [JsonProperty(PropertyName = "deg")]
         public int Degree { get; set; }
     }
 

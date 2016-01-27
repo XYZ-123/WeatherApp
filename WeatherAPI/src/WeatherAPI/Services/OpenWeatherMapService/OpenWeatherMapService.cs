@@ -14,11 +14,21 @@
     {
         private string appid = "2affcc7675263d5ca51b7d4da8a13bd6";
 
+        private HttpClient httpClient { get; }
+
+        public OpenWeatherMapService(): this(new HttpClient())
+        {
+        }
+
+        public OpenWeatherMapService(HttpClient httpClient)
+        {
+            this.httpClient = httpClient;
+        }
         public async Task<CurrentWeather> GetCurrentWeatherAsync(ForecastRequest forecastRequest)
         {
-            HttpClient client = new HttpClient();
-            var url = GetRequestUrl(forecastRequest,"weather");
-            var response = await client.GetStringAsync(url);
+
+            var url = GetRequestUrl(forecastRequest, "weather");
+            var response = await httpClient.GetStringAsync(url);
 
             var forecast = JsonConvert.DeserializeObject<CurrentWeatherResponse>(response);
             var currentWeather = forecast.ToCurrentWeather();
@@ -28,9 +38,8 @@
 
         public async Task<List<DailyForecast>> GetDailyForecastAsync(ForecastRequest forecastRequest, DateTime fromDate, DateTime toDate)
         {
-            HttpClient client = new HttpClient();
             var url = GetRequestUrl(forecastRequest, "forecast");
-            var response = await client.GetStringAsync(url);
+            var response = await httpClient.GetStringAsync(url);
 
             var forecast = JsonConvert.DeserializeObject<DailyForecastResponse>(response);
             var dailyForecasts = forecast.ToDailyForecasts();

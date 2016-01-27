@@ -27,11 +27,6 @@ namespace WeatherAPI.Services.OpenWeatherMapService
 
             var dates = PeriodicForecasts.Select(s => DateTime.ParseExact(s.TimeStampString, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture).Date).Distinct();
 
-            var forecastsByDay = PeriodicForecasts.GroupBy(
-                forecast => DateTime.Now.Date + TimeSpan.FromTicks(forecast.TimeStamp),
-                forecast => forecast,
-                (date, forecasts) => new { Date = date, Forecasts = forecasts });
-
             foreach (var date in dates)
             {
                 var dailyForecast = new DailyForecast();
