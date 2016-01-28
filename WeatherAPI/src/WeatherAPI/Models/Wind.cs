@@ -15,7 +15,7 @@ namespace WeatherAPI.Models
         public double Speed { get; set; }
 
         [JsonProperty(PropertyName = "deg")]
-        public int Degree { get; set; }
+        public double Degree { get; set; }
     }
 
 }

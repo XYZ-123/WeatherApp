@@ -20,7 +20,7 @@ namespace WeatherAPITests
             var obj2Type = obj2.GetType();
 
             if (obj1Type != obj2Type) return false;
-
+    
             if (obj1Type.IsAssignableFrom(typeof(IEnumerable))
                 || obj2Type.IsAssignableFrom(typeof(IEnumerable)))
             {
@@ -28,7 +28,16 @@ namespace WeatherAPITests
             }
 
             bool result;
-            result = AssertProperties(obj1Type.GetProperties(), obj1, obj2Type.GetProperties(), obj2) && AssertFields(obj1Type.GetFields(), obj1, obj2Type.GetFields(), obj2);
+            if (obj1Type == typeof(string))
+            {
+                result = string.Equals(obj1, obj2);
+            }
+            else if(obj1Type.IsClass)
+            { result = AssertProperties(obj1Type.GetProperties(), obj1, obj2Type.GetProperties(), obj2) && AssertFields(obj1Type.GetFields(), obj1, obj2Type.GetFields(), obj2);}          
+            else
+            {
+                result = Object.Equals(obj1, obj2);
+            }
             return result;
 
         }
@@ -38,7 +47,7 @@ namespace WeatherAPITests
             foreach (var field in obj1Fields)
             {
                 if (!obj2Fields.Contains(field)) return false;
-                if (field.FieldType.IsValueType && Object.Equals(field.GetValue(obj1), field.GetValue(obj2)))
+                if ((field.FieldType.IsValueType || field.FieldType.IsAssignableFrom(typeof(Nullable)))&& Object.Equals(field.GetValue(obj1), field.GetValue(obj2)))
                 {
                     continue;
                 }
@@ -60,7 +69,7 @@ namespace WeatherAPITests
             foreach (var property in obj1Properties)
             {
                 if (!obj2Properties.Contains(property)) return false;
-                if (property.PropertyType.IsValueType && Object.Equals(property.GetValue(obj1), property.GetValue(obj2)))
+                if ((property.PropertyType.IsValueType || property.PropertyType.IsAssignableFrom(typeof(Nullable))) && Object.Equals(property.GetValue(obj1), property.GetValue(obj2)))
                 {
                     continue;
                 }

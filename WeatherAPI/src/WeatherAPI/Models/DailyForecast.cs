@@ -15,6 +15,7 @@ namespace WeatherAPI.Models
         {
             Hourly = new List<HourlyForecast>();
         }
+
         [JsonProperty(PropertyName = "location")]
         public GeoLocation Location { get; set; }
 
@@ -32,7 +33,7 @@ namespace WeatherAPI.Models
 
         public DateTime Date { get; set; }
 
-        public List<HourlyForecast> Hourly { get; set; } 
+        public List<HourlyForecast> Hourly { get; } 
 
         public int Code { get; set; }
 
