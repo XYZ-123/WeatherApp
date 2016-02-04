@@ -30,7 +30,7 @@ export default function fuelSavingsAppState(state = initialState, action) {
 		case SAVE_FUEL_SAVINGS:
       // For this example, just simulating a save by changing date modified.
       // In a real app using Redux, you might use redux-thunk and handle the async call in fuelSavingsActions.js
-			return objectAssign({}, state, { dateModified: dateHelper.getFormattedDateTime(new Date()) });
+			return objectAssign({}, state, { dateModified: dateHelper.getFormattedDateTime(new Date())  });
 
 		case CALCULATE_FUEL_SAVINGS:
 			let newState = objectAssign({}, state);
