@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import weatherReducer from './fuelSavings';
+import weatherReducer from './weather';
 
 const rootReducer = combineReducers({
   weatherReducer

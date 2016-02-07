@@ -35,7 +35,7 @@ namespace WeatherAPI.Controllers
         }
 
         [HttpPost]
-        [Route("forecast/{fromDate}/{toDate}")]
+        [Route("dailyforecast/{fromDate}/{toDate}")]
         public async Task<IActionResult> GetForecastRange([FromBody] ForecastRequest request, DateTime fromDate, DateTime toDate)
         {
             var result = await _weatherService.GetDailyForecastAsync(request, fromDate, toDate);

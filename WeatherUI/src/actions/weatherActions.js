@@ -13,4 +13,6 @@ export const loadWeatherSuccess = createAction(actionTypes.LOAD_WEATHER_SUCCESS,
 
 export const loadWeatherError = createAction(actionTypes.LOAD_WEATHER_ERROR, (error)=>{error});
 
-export default {loadWeather, setDateRange,setWeatherProvider, startLoadWeather, loadWeatherSuccess, loadWeatherError};
+export const setForecastType = createAction(actionTypes.SET_FORCAST_TYPE, (forecastType)=> {forecastType});
+
+export default {loadWeather, setDateRange,setWeatherProvider, startLoadWeather, loadWeatherSuccess, loadWeatherError, setForecastType};

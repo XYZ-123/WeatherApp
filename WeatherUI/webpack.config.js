@@ -45,7 +45,7 @@ var getLoaders = function () {
     {
       test: /\.js$/,
       include: path.join(__dirname, 'src'),
-      loaders: ['babel', 'eslint']
+      loaders: ['babel']
     },
     {
       test: /(\.css|\.scss)$/,
