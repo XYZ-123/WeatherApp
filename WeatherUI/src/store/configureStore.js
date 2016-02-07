@@ -10,9 +10,10 @@ import weatherSaga from '../sagas/weatherSaga';
 
 const createStoreWithMiddleWare = applyMiddleware(sagaMiddleware(weatherSaga))(createStore);
 
-export default function configureStore(initialState) {
+export default function configureStore() {
 
-  const store = createStoreWithMiddleWare(rootReducer, initialState);
+  const store = createStoreWithMiddleWare(rootReducer);
+  console.log("Initial state",store.getState());
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

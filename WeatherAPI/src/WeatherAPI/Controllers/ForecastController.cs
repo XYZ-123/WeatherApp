@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Cors;
 using Microsoft.AspNet.Mvc;
 
 namespace WeatherAPI.Controllers
@@ -14,10 +15,11 @@ namespace WeatherAPI.Controllers
     using WeatherAPI.Models;
     using WeatherAPI.Services;
 
+    [EnableCors("AllowAll")]
     [Route("api/[controller]")]
     public class ForecastController : Controller
     {
-        private IWeatherService _weatherService;
+        private readonly IWeatherService _weatherService;
         public ForecastController(IWeatherService weatherService)
         {
             if(weatherService == null)

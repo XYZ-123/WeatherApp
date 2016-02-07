@@ -1,5 +1,5 @@
 import {take, put, call, fork} from 'redux-saga';
-import 'fetch';
+import 'whatwg-fetch';
 
 import actionTypes from '../constants/WeatherActionTypes';
 import actions from '../actions/weatherActions';
@@ -22,11 +22,12 @@ export default function* doWeatherRequest(getState)
             throw new Error("Invalid error");
 
           console.log("Starting to load weather");
+
           yield put(actions.startLoadWeather());
 
-          var weatherService = new WeatherService(window.fetch);
-
-          let forecast = yield call(weatherService.getWeather, provider, forecastType, fromDate, toDate);
+          var weatherService = new WeatherService();
+          console.log("weather service",weatherService);
+          let forecast = yield weatherService.getWeather(provider, forecastType, fromDate, toDate);
           console.log("Received forecast:", forecast);
           yield put(actions.loadWeatherSuccess(forecast, forecastType));
 
@@ -35,4 +36,5 @@ export default function* doWeatherRequest(getState)
         yield put(actions.loadWeatherError(e));
       }
     }
+  console.log("Finished saga");
 }

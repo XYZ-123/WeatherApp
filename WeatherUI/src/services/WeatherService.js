@@ -11,12 +11,13 @@ export default class WeatherService
 
     getWeather(provider, forecastType, fromDate, toDate)
     {
+      debugger;
       switch(forecastType)
       {
           case forecastTypes.CurrentWeather:
-              return getCurrentWeather(provider);
+              return this.getCurrentWeather(provider);
           case forecastTypes.Daily:
-              return getDailyWeather(provider, fromDate, toDate);
+              return this.getDailyWeather(provider, fromDate, toDate);
         default:
               throw new Error("Unrecognized request");
       }
@@ -24,18 +25,22 @@ export default class WeatherService
 
     getCurrentWeather(provider)
     {
-        let forecastRequest = {units:0,location:{city:'London',country:'uk'}};
-        return this.fetch(`${baseUrl}api/forecast/currentweather?weatherprovider=${provider}`,{method:"POST",
+        let forecastRequest = {units:"Celsium",location:{city:'London',country:'uk'}};
+        let fetch = this.fetch || window.fetch;
+        return fetch(`${baseUrl}api/forecast/currentweather?weatherprovider=${provider}`,{method:"post",
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-          },body:JSON.stringify(forecastRequest)}).then( response => response.json());
+          },
+          body:JSON.stringify(forecastRequest)}).then( response => {console.log(response);
+          return response.json(); }).catch(error=> console.log(error));
     }
 
     getDailyWeather(provider, fromDate, toDate)
     {
         let forecastRequest = {units:0,location:{city:'London',country:'uk'}};
-        return this.fetch(`${baseUrl}api/forecast/dailyforecast/${fromDate}/${toDate}?weatherprovider=${provider}`,{method:"POST",
+        let fetch = this.fetch || window.fetch;
+        return fetch(`${baseUrl}api/forecast/dailyforecast/${fromDate}/${toDate}?weatherprovider=${provider}`,{method:"POST",
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'

@@ -17,7 +17,7 @@ namespace WeatherAPI.Models
 
         public int Pressure { get; set; }
 
-        public int Humidity { get; set; }
+        public double Humidity { get; set; }
 
         public int RainingProbability { get; set; }
 

@@ -45,7 +45,7 @@ namespace WeatherAPI.Services.OpenWeatherMapService
 
             currentWeather.CurrentTemprature = this.main.temp;
             currentWeather.Humidity = this.main.humidity;
-            currentWeather.Pressure = this.main.pressure;
+            currentWeather.Pressure = (int)Math.Round(this.main.pressure);
             currentWeather.WeatherDescription = string.Concat(weather?[0]?.main, Environment.NewLine, weather?[0]?.description);
             currentWeather.Date = DateTime.Today + TimeSpan.FromTicks(this.TimeOfDay);
             currentWeather.Wind = this.wind;
@@ -65,8 +65,8 @@ namespace WeatherAPI.Services.OpenWeatherMapService
         public class Main
         {
             public double temp { get; set; }
-            public int pressure { get; set; }
-            public int humidity { get; set; }
+            public double pressure { get; set; }
+            public double humidity { get; set; }
             public double temp_min { get; set; }
             public double temp_max { get; set; }
         }
