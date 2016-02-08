@@ -12,14 +12,16 @@ export default class WeatherService
     getWeather(provider, forecastType, fromDate, toDate)
     {
       debugger;
+      let fromDateFormatted = fromDate.format("DD-MM-YYYY");
+      let toDateFormatted = toDate.format("DD-MM-YYYY");
       switch(forecastType)
       {
           case forecastTypes.CurrentWeather:
               return this.getCurrentWeather(provider);
           case forecastTypes.Daily:
-              return this.getDailyWeather(provider, fromDate, toDate);
+              return this.getDailyWeather(provider, fromDateFormatted, toDateFormatted);
         default:
-              throw new Error("Unrecognized request");
+              throw "Unrecognized request";
       }
     }
 
@@ -38,6 +40,7 @@ export default class WeatherService
 
     getDailyWeather(provider, fromDate, toDate)
     {
+
         let forecastRequest = {units:0,location:{city:'London',country:'uk'}};
         let fetch = this.fetch || window.fetch;
         return fetch(`${baseUrl}api/forecast/dailyforecast/${fromDate}/${toDate}?weatherprovider=${provider}`,{method:"POST",

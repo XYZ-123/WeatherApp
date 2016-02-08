@@ -19,11 +19,14 @@
   "author": "Arthur Rudyuk",
   "license": "MIT",
   "dependencies": {
+    "moment": "2.11.2",
     "object-assign": "4.0.1",
     "react": "0.14.6",
+    "react-datepicker": "0.20.0",
     "react-dom": "0.14.6",
     "react-redux": "4.0.6",
     "redux": "3.0.5",
+    "tether": "1.1.1",
     "whatwg-fetch": "0.11.0"
   },
   "devDependencies": {
@@ -48,9 +51,11 @@
     "eslint-loader": "1.2.0",
     "eslint-plugin-react": "3.15.0",
     "file-loader": "0.8.5",
+    "gregorian-calendar-format": "4.1.0",
     "mocha": "2.3.4",
     "node-sass": "3.4.2",
     "parallelshell": "2.0.0",
+    "rc-calendar": "5.3.1",
     "react-transform-catch-errors": "1.0.1",
     "react-transform-hmr": "1.0.1",
     "redbox-react": "1.2.0",

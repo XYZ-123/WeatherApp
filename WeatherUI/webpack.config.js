@@ -47,9 +47,9 @@ var getLoaders = function () {
       include: [path.join(__dirname, 'src'), path.join(__dirname, 'src/**')],
       loaders: ['babel']
     },
+
     {
       test: /(\.css|\.scss)$/,
-      include: path.join(__dirname, 'src'),
       loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
     }
   ];
@@ -69,7 +69,7 @@ module.exports = function getConfig(env) {
     },
     plugins: getPlugins(env),
     resolve: {
-      extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx", ".less"]
+      extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx", ".scss",".css"]
     },
     module: {
       loaders: getLoaders()

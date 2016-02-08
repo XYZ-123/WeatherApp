@@ -15,7 +15,6 @@ namespace WeatherAPI.Controllers
     using WeatherAPI.Models;
     using WeatherAPI.Services;
 
-    [EnableCors("AllowAll")]
     [Route("api/[controller]")]
     public class ForecastController : Controller
     {
